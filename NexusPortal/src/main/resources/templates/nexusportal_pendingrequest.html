@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png">
+<!-- Custom Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+
+
+				<div class="header-right">
+					<ul class="clearfix">
+
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="images/user/1.png" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="app-profile.html"><i class="icon-user"></i>
+												<span>Profile</span></a></li>
+										<li><a href="email-inbox.html"><i
+												class="icon-envelope-open"></i> <span>Inbox</span>
+												<div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+										</li>
+
+										<hr class="my-2">
+										<li><a href="page-lock.html"><i class="icon-lock"></i>
+												<span>Lock Screen</span></a></li>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li class="nav-label"></li>
+					<li><a class="has-arrow" href="/NexusPortal/pendigregister"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Registration Request</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Order List</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Client List</span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<!-- row -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+                            <div class="card-body">
+                                <div class="form-validation">
+                                
+                                    <form class="form-valide" action="#" th:object="${registerData}" th:action="@{/SentLoggingRequestX}"   method="post">
+                                   
+                                     <input type="hidden" class="form-control" id="val-fullname" name="val-fullname" th:field="${registerData.id}"/>
+                                        <div th:if="${registerData.isregistersuccess == 'N'}">
+                                         <div class="alert alert-warning" th:text="${registerData.errormessage}"> </div>
+                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-fullname">Full Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-fullname" name="val-fullname" th:field="${registerData.fullname_businessname}"/>
+                                            </div>
+                                        </div>
+
+										<div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-systemname">System Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-systemname" name="val-systemname" th:field="${registerData.webstore}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-address">Address <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-address" name="val-address" th:field="${registerData.address1}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-email" name="val-email" th:field="${registerData.emailaddress}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-pickupbr">Pickup Branch <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                               
+                                            <select class="form-control" id="pickupbranchb" th:field="*{pickupbranch}"  style="width: 100%" >										
+											<option th:each="i : ${branchlist}" th:value="${i.branchcode}" th:text="${i.branchdescription}" th:if="${registerData.pickupbranch == i.branchcode}" selected="selected" ></option>										 
+											<option th:each="i : ${branchlist}" th:value="${i.branchcode}" th:text="${i.branchdescription}" th:if="${registerData.pickupbranch != i.branchcode}"  ></option>										 
+											   
+											</select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-acctype">Account Type <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                            
+                                               <div class="form-group" th:if="${registerData.accouttype == 'p'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" checked="checked" th:field="*{accouttype}"  th:value="p" name="optradio">Personal</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{accouttype}"  th:value="b" name="optradio">Business</label>                                            
+                                        	   </div>
+                                        	    <div class="form-group" th:if="${registerData.accouttype == 'b'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{accouttype}"  th:value="p" name="optradio">Personal</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{accouttype}"  th:value="b" checked="checked" name="optradio">Business</label>                                            
+                                        	   </div>
+                                            </div>
+                                        </div>
+                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-nic">NIC <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-nic" name="val-nic" th:field="${registerData.nic_drivinglicence}"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-contactno">Contact No <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-contactno" name="val-contactno" th:field="${registerData.contactno}" />
+                                            </div>
+                                        </div>
+                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-brno">Business Registration No <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-brno" name="val-brno" th:field="${registerData.brno}" />
+                                            </div>
+                                        </div>
+                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-contactperon">Contact Person <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-contactperon" name="val-contactperon" th:field="${registerData.contactperson}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-buissname">Business Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-buissname" name="val-buissname" th:field="${registerData.businessName}" />
+                                            </div>
+                                        </div>
+                                        
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-relationtobusiness"> Relationship to Business <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <div class="form-group" th:if="${registerData.relationshiptobusiness == 'ow'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" checked="checked" th:field="*{relationshiptobusiness}"  th:value="ow" name="optradio">Owner</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{relationshiptobusiness}"  th:value="ao" name="optradio">Authorized Officer</label>                                            
+                                        	   </div>
+                                        	    <div class="form-group" th:if="${registerData.relationshiptobusiness == 'ao'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{relationshiptobusiness}"  th:value="ow" name="optradio">Owner</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{relationshiptobusiness}"  th:value="ao"  checked="checked" name="optradio">Authorized Officer</label>                                            
+                                        	   </div>                                           
+                                            </div>
+                                               
+                                            </div>
+                                       
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-bankname">Bank Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                            <label></label>
+                                            <select class="form-control" th:field="*{bankName}" id="sel1">
+                                                <option th:each="i : ${banklist}" th:value="${i.bankcode}" th:text="${i.bankdescription}"  th:if="${registerData.bankName == i.bankcode}" selected="selected">
+    														</option>
+    											 <option th:each="i : ${banklist}" th:value="${i.bankcode}" th:text="${i.bankdescription}"  th:if="${registerData.bankName != i.bankcode}">
+    														</option>
+                                            </select>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-bank_brname">Branch Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">  
+                                                 <select class="form-control" th:field="*{bankAccountBranch}"  id="sel1">
+                                                <option th:each="i : ${bankbranchlist}" th:value="${i.barnchcode}" th:text="${i.branchdescription}" th:if="${registerData.bankAccountBranch == i.barnchcode}" selected="selected">
+    														</option>
+    											<option th:each="i : ${bankbranchlist}" th:value="${i.barnchcode}" th:text="${i.branchdescription}" th:if="${registerData.bankAccountBranch != i.barnchcode}" >
+    														</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-accholdername">Account Holder Name <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-accholdername" name="val-accholdername" th:field="${registerData.accountHolderName}" />
+                                            </div>
+                                        </div>
+                                        
+                                      
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-accno">Account No <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-accno" name="val-accno" th:field="${registerData.accountid}"/>
+                                            </div>
+                                        </div>
+                                        
+                                               <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-relationtobusiness"> Bank Account Type<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <div class="form-group" th:if="${registerData.bankAccountType == 'S'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" checked="checked" th:field="*{bankAccountType}"  th:value="S" name="optradio">Savings</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{bankAccountType}"  th:value="C" name="optradio">Current</label>                                            
+                                        	   </div>
+                                        	    <div class="form-group" th:if="${registerData.bankAccountType == 'C'}">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{bankAccountType}"  th:value="S" name="optradio">Savings</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{bankAccountType}"  th:value="C"  checked="checked" name="optradio">Current</label>                                            
+                                        	   </div>                                           
+                                            </div>
+                                               
+                                            </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-contpersnic">Contact Person NIC <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-contpersnic" name="val-contpersnic" th:field="${registerData.contactpersonnic}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-contnoland">Contact No (Land Line) <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-contnoland" name="val-contnoland" th:field="${registerData.contactno2}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-bank_brname">Payment Type <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">  
+                                                 <select class="form-control" th:field="*{payementtype}" id="sel1">
+                                                <option th:each="i : ${paymenttypelist}" th:value="${i.paymentTypeCode}" th:text="${i.paymentTypeDesc}" th:if="${registerData.payementtype == i.paymentTypeCode}" selected="selected">
+    														</option>
+    											 <option th:each="i : ${paymenttypelist}" th:value="${i.paymentTypeCode}" th:text="${i.paymentTypeDesc}" th:if="${registerData.payementtype != i.paymentTypeCode}" >
+    														</option>
+    										
+                                            </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-bank_brname">SMS Notification Options <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">                                       
+                                             <fieldset> 
+                                            
+                                             <span th:if="${registerData.sms_recv_pic_br == '1'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="1" value="1" checked> ON RECEVIED BY PICKUP BRANCH<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_recv_pic_br == '1'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="1" value="1"  > ON RECEVIED BY PICKUP BRANCH<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_recv_ho == '2'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="2" value="2" checked> ON RECEIVED BY  HEAD OFFICE<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_recv_ho == '2'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="2" value="2"  > ON RECEIVED BY  HEAD OFFICE<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_disp_dest_br == '3'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="3" value="3" checked> ON DISPATCH TO DESTINATION BRANCH<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_disp_dest_br == '3'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="3" value="3"  > ON DISPATCH TO DESTINATION BRANCH<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_recv_dest_br == '4'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="4" value="4" checked> ON RECEIVED AT DESTINATION BRANCH<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_recv_dest_br == '4'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="4" value="4"  > ON RECEIVED AT DESTINATION BRANCH<br> 
+                                             </span>
+                                             
+                                              <span th:if="${registerData.sms_out_dele == '5'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="5" value="5" checked> ON OUT FOR DELIVERY<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_out_dele == '5'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="5" value="5"  > ON OUT FOR DELIVERY<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_rech_1 == '6'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="6" value="6" checked> ON RESCHDULED AT 1ST ATTEMPT<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_rech_1 == '6'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="6" value="6"  > ON RESCHDULED AT 1ST ATTEMPT<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_rech_2 == '7'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="7" value="7" checked> ON RESCHDULED AT 2ND ATTEMPT<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_rech_2 == '7'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="7" value="7"  > ON RESCHDULED AT 2ND ATTEMPT<br> 
+                                             </span>
+                                             
+                                               <span th:if="${registerData.sms_rech_3 == '8'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="8" value="8" checked> ON RESCHDULED AT 3RD ATTEMPT<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_rech_3 == '8'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="8" value="8"  > ON RESCHDULED AT 3RD ATTEMPT<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_returned == '9'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="9" value="9" checked>ON RETURNED<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_returned == '9'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="9" value="9"  > ON RETURNED<br> 
+                                             </span>
+                                             
+                                             <span th:if="${registerData.sms_returned == '10'}"> 
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="10" value="10" checked>ON DELIVERED<br> 
+                                             </span>
+                                             <span th:unless="${registerData.sms_returned == '10'}">
+                                             <input type="checkbox" name="smsalert" th:field="*{smsalert}" class="form-check-input" th:value="10" value="10"  >ON DELIVERED<br> 
+                                             </span>
+                                                                                       
+											</fieldset>
+                                            </div>
+                                        </div>
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-acctype">Rate Type <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                               <div class="form-group">
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{ratetype}"  th:value="d"  name="optradio">Default</label>
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{ratetype}" th:value="f"  name="optradio">Fix</label>
+                                                
+                                                <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{ratetype}" th:value="5"  name="optradio">5%</label>  
+                                            <label class="radio-inline mr-3">
+                                                <input type="radio" th:field="*{ratetype}" th:value="10"  name="optradio">10%</label> 
+                                                                                     
+                                        	   </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label"><a href="#">Terms &amp; Conditions</a>  <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <label class="css-control css-control-primary css-checkbox" for="val-terms">
+                                                    <input type="checkbox" class="css-control-input" id="val-terms" name="val-terms" value="1"> <span class="css-control-indicator"></span> I agree to the terms</label>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="regid" name="regid" class="btn btn-primary mr-2" th:value="1" />
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <input type="submit" th:name="action" th:value="Submit" class="btn btn-primary" value="Submit"/>
+                                                <input type="submit" th:name="action" th:value="Cancel" class="btn btn-danger" value="Cancel"/>
+                                            </div>
+                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<p>-</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright &copy; by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+					2018
+				</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<script src="plugins/common/common.min.js"></script>
+	<script src="js/custom.min.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/gleek.js"></script>
+	<script src="js/styleSwitcher.js"></script>
+</body>
+</html>
+<!-- Links https://www.baeldung.com/spring-form-multiple-submit-buttons 
+https://www.baeldung.com/spring-thymeleaf-request-parameters
+-->
