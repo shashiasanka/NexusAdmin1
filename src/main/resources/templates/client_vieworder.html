@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+<link rel="stylesheet"
+	href="template/vendors/simple-line-icons/css/simple-line-icons.css">
+<link rel="stylesheet"
+	href="template/vendors/flag-icon-css/css/flag-icon.min.css">
+<link rel="stylesheet"
+	href="template/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="template/css/style.css" />
+<link rel="shortcut icon" href="template/images/favicon.png" />
+</head>
+<body>
+	<div class="container-scroller">
+		<!-- partial:../../partials/_navbar.html -->
+		<nav
+			class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+			<div class="navbar-brand-wrapper d-flex align-items-center"></div>
+			<div
+				class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+				<h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome
+					Nexus dashboard!</h5>
+
+				<ul class="navbar-nav navbar-nav-right ml-auto">
+					<li class="nav-item"><a href="#" class="nav-link">
+							<p th:text="${loggeduser.clientbusinessname}"></p>
+					</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">bxcvcvcvcv</a></li>
+
+				</ul>
+			</div>
+		</nav>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:../../partials/_sidebar.html -->
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<ul class="nav">
+
+
+
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="/NexusClient/pickuprequest"
+						aria-expanded="false" aria-controls="ui-basic"> <span
+							class="menu-title">Send Pickup Request</span> <i
+							class="icon-doc menu-icon"></i>
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="/NexusClient/clientorder" aria-expanded="false"
+						aria-controls="ui-basic"> <span class="menu-title"> Add Order</span> <i class="icon-doc menu-icon"></i>
+					</a></li>
+					
+					<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="/NexusClient/Home" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Home</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>              
+            </li>
+
+				</ul>
+			</nav>
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-md-12 grid-margin">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">View Order</h4>
+									<p class="card-description"></p>
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Client Name</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.clientname}" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Client
+														Contact No</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.contactno}" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<p class="card-description"> Oder Details</p>
+										
+											<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Order Id</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control"  th:field="*{clientorder.orderid}"  />
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Tracking Id</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.ordertrackingid}" />
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Description
+													</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.description}" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">COD Amount</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.codamount}"  /> 
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Cash Type </label>
+													<div class="col-sm-9">
+														<select class="form-control" th:field="*{clientorder.paymenttype}" >
+															<option th:value="C" value="C">COD</option>
+															<option th:value="P" value="P">PAID</option>
+
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Weight</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.weight}" />
+													</div>
+												</div>
+											</div>
+										</div>
+									<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Remarks
+													</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.remarks}" />
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<p class="card-description">Customer Details</p>
+										
+											<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Name
+													</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control"  th:field="*{clientorder.customername}" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Address</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control"  th:field="*{clientorder.customeraddress}"  />
+													</div>
+												</div>
+											</div>
+										</div>
+											<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Phone No
+													</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.customerphone}"  />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Address</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" />
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Phone
+													</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Customer Province</label>
+													<div class="col-sm-9">
+														<select class="form-control"  th:field="*{clientorder.province}" >
+															<option th:value="W" value="W">Western</option>
+															<option th:value="C" value="C">Central</option>
+															<option th:value="S" value="S">Southern</option>
+
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">District
+													</label>
+													<div class="col-sm-9">
+														<select class="form-control" th:field="*{clientorder.district}"  >
+															<option value="col">Colombo</option>
+															<option value="gam">Gampaha</option>
+															<option value="kal">Kalutara</option>
+
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="col-sm-3 col-form-label">Nearest City</label>
+													<div class="col-sm-9">
+														<input type="text" class="form-control" th:field="*{clientorder.customernearestcity}"  />
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										
+										
+										
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:../../partials/_footer.html -->
+				<footer class="footer">
+					<div
+						class="d-sm-flex justify-content-center justify-content-sm-between">
+						<span
+							class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright
+							© bootstrapdash.com 2020</span> <span
+							class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+							Free <a
+							href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+							target="_blank">Bootstrap admin templates</a> from
+							Bootstrapdash.com
+						</span>
+					</div>
+				</footer>
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+</body>
+</html>

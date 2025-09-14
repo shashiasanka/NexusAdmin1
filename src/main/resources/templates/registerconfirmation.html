@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h1>Nexus Delivery Customer Registration</h1>
+			<div th:if="${expflag == 'Y'}">
+				<div class="alert alert-warning"   role="alert">
+				<p> Your Token expired . Please sent a new registration request</p>
+				</div>
+				</div>
+				<div th:if="${usenameexsist == 'Y'}">
+				<div class="alert alert-warning"   role="alert">
+				<p> Your User name already in use please choose another one</p>
+				</div>
+				</div>
+				
+				
+			
+				<form class="form-sample" action="#" th:action="@{/createclientloging}"   method="post">
+				
+				 <input type="hidden" class="form-control" id="vtoken" name="vtoken" th:value="${vtoken}">
+			<div class="form-group" id="businessnamediv" >
+				<label for="pwd" >User Name :</label> <input type="text" class="form-control" id="username" name="username"	>
+			</div>
+			
+			<div class="form-group" id="businessnamediv" >
+				<label for="pwd" >Password :</label> <input type="password" class="form-control" id="password" name="password"	>
+			</div>
+			
+			<div class="form-group" id="businessnamediv" >
+				<label for="pwd" >Confirm Password :</label> <input type="password" class="form-control" id="passwordconf" name="passwordconf"	>
+			</div>
+			
+			<input type="submit" class="btn btn-info btn-sm" value="View"/>
+			</form>
+	</div>
+
+				
+</body>
+</html>

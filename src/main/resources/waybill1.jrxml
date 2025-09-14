@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waybill1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4896c39-4237-4d67-9c2c-44be831949bd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="from_name" class="java.lang.String"/>
+	<parameter name="from_contactno" class="java.lang.String"/>
+	<parameter name="from_issueddate" class="java.lang.String"/>
+	<parameter name="to_name" class="java.lang.String"/>
+	<parameter name="to_address" class="java.lang.String"/>
+	<parameter name="to_phone" class="java.lang.String"/>
+	<parameter name="x_name" class="java.lang.String"/>
+	<parameter name="x_address" class="java.lang.String"/>
+	<parameter name="x_nicno" class="java.lang.String"/>
+	<parameter name="cod_amount" class="java.lang.String"/>
+	<parameter name="orderno" class="java.lang.String"/>
+	<parameter name="weight" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="380" splitType="Stretch">
+			<rectangle radius="12">
+				<reportElement x="0" y="0" width="560" height="380" uuid="f7cc3017-acac-47f0-8745-6db2ac097c9e"/>
+			</rectangle>
+			<rectangle radius="12">
+				<reportElement x="7" y="62" width="265" height="88" uuid="92fd7ecd-e470-40a5-a572-389a582d87b8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="80" y="20" width="400" height="30" uuid="62d1f50f-8476-48af-905d-ec05b720b418"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[NEXUS DILIVERY WAY BILL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="70" width="210" height="20" uuid="ab1799df-c3d4-4554-98a7-e99878c8db63"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tracking Number]]></text>
+			</staticText>
+			<rectangle radius="12">
+				<reportElement x="9" y="164" width="265" height="98" uuid="df1974b2-88dc-4e87-b53a-e994ede01270"/>
+			</rectangle>
+			<rectangle radius="12">
+				<reportElement x="10" y="274" width="265" height="98" uuid="fe91e842-60e1-4086-b1c1-1c2034f74be0"/>
+			</rectangle>
+			<rectangle radius="12">
+				<reportElement x="285" y="274" width="265" height="98" uuid="ae2fd2d2-898f-4a2f-a76d-ad220ba280e6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="172" width="63" height="20" uuid="ef132571-8b07-4237-9245-296c54bb1729"/>
+				<text><![CDATA[From :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="174" width="162" height="16" uuid="9ae16d87-0190-4b3b-ab11-22c024dd70d9"/>
+				<textFieldExpression><![CDATA[$P{from_name}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="285" y="62" width="259" height="68" uuid="09eb6112-63cb-4583-ad8d-6fc34fa92b65"/>
+				<imageExpression><![CDATA["nexus1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="290" y="134" width="254" height="16" uuid="4b99907f-6371-4a12-a16d-96cb0c506551"/>
+				<text><![CDATA[Email - operations@nexusdilevery.com]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="201" width="162" height="16" uuid="424e6d53-4afb-46ae-9e37-ccbdd32d767c"/>
+				<textFieldExpression><![CDATA[$P{from_contactno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="199" width="63" height="20" uuid="fb8cb063-fea3-4b38-a7b1-3500e5dc3eee"/>
+				<text><![CDATA[Contact No :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="224" width="162" height="16" uuid="b3fe053d-1742-4489-ab63-cd32bca33d3c"/>
+				<textFieldExpression><![CDATA[$P{from_issueddate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="223" width="65" height="20" uuid="08c5009b-014f-4a0c-a0be-58623acbdc59"/>
+				<text><![CDATA[Issued Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="289" width="44" height="20" uuid="2caebf29-a9f0-4afb-80c2-132600b8b3c1"/>
+				<text><![CDATA[To :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="290" width="162" height="16" uuid="f2a4fd02-fc65-40e2-b3df-77c4bd852a29"/>
+				<textFieldExpression><![CDATA[$P{to_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="316" width="63" height="20" uuid="19f095eb-dc53-4d57-9bd4-72f648aaeba0"/>
+				<text><![CDATA[Address :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="317" width="162" height="16" uuid="168203fc-a8e3-4d8e-9491-95abca5e7a50"/>
+				<textFieldExpression><![CDATA[$P{to_address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="340" width="95" height="20" uuid="3ce80d4c-3a32-4275-9eb7-73194cd6667b"/>
+				<text><![CDATA[Phone No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="340" width="162" height="16" uuid="af62be71-ff6b-4dd8-afd7-cf31e66d609a"/>
+				<textFieldExpression><![CDATA[$P{to_phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="280" width="44" height="20" uuid="248b49c6-9b46-483a-9c59-18f92bfa25ce"/>
+				<text><![CDATA[Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="280" width="162" height="16" uuid="b9aed87f-1ada-443b-8b95-bb1bb6636e5a"/>
+				<textFieldExpression><![CDATA[$P{x_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="298" width="63" height="20" uuid="372fe22f-9107-4c83-a8e4-6b3243738453"/>
+				<text><![CDATA[Address :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="300" width="162" height="16" uuid="70a7970d-d792-476b-9d41-e7e8402a4f84"/>
+				<textFieldExpression><![CDATA[$P{x_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="318" width="162" height="16" uuid="317e4d41-b565-4a35-976d-55333d2f6840"/>
+				<textFieldExpression><![CDATA[$P{x_nicno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="316" width="63" height="20" uuid="bb0ec053-17d8-40b6-a371-503b6fbe486f"/>
+				<text><![CDATA[NIC No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="334" width="63" height="20" uuid="7409803f-3de5-49b0-bce5-ba9c3172fbe7"/>
+				<text><![CDATA[Signature:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="336" width="162" height="16" uuid="91cdb580-c0fd-443a-aad1-cc07322d88d0"/>
+			</textField>
+			<textField>
+				<reportElement x="360" y="352" width="162" height="16" uuid="fe962319-a1d3-490a-a00e-1a390743b934"/>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="350" width="63" height="20" uuid="17e6fed7-aeaf-451a-9dfa-08213b5e0e38"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="173" width="73" height="20" uuid="a33d3beb-7c76-4b5b-b42b-1c7dbac291cb"/>
+				<text><![CDATA[COD Amount :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="174" width="162" height="16" uuid="c12933b8-8626-4574-8c01-40fd793251af"/>
+				<textFieldExpression><![CDATA[$P{cod_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="200" width="63" height="20" uuid="2802256b-4766-46e8-9854-3957eb95a343"/>
+				<text><![CDATA[Order No :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="201" width="162" height="16" uuid="88679d2f-9382-419f-a792-9550ea982947"/>
+				<textFieldExpression><![CDATA[$P{orderno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="224" width="63" height="20" uuid="d43e01cb-94e2-4dcc-9ca9-b802c7d211b2"/>
+				<text><![CDATA[Weight :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="224" width="162" height="16" uuid="1c1a4a4f-6cc1-4a44-aaa5-1507162bb9ac"/>
+				<textFieldExpression><![CDATA[$P{from_issueddate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
