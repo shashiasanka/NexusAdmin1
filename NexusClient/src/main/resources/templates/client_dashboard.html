@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+	<link rel="stylesheet" href="template/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="template/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="template/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="template/css/style.css" />
+    <link rel="shortcut icon" href="template/images/favicon.png" />
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script>
+$(document).ready(function(){
+	$('#example').DataTable();
+});
+</script>
+</head>
+<body>
+<div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex align-items-center">
+          
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+          <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome Nexus dashboard!</h5> 
+          
+          <ul class="navbar-nav navbar-nav-right ml-auto">
+         
+            <li class="nav-item"><a href="#" class="nav-link"> <p th:text="${loggeduser.clientbusinessname}"> </p></a></li>
+            <li class="nav-item"><a href="#" class="nav-link">bxcvcvcvcv</a></li>
+            
+          </ul>
+         
+        </div>
+      
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas"  id="sidebar">
+       
+         <ul class="nav" >  
+             <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="/NexusClient/pickuprequest" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Send Pickup Request</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>              
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="/NexusClient/clientorder" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Add order</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>              
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="/NexusClient/Home" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Home</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>              
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="/NexusClient/search" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Search</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>              
+            </li>
+          </ul>
+           
+            
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+         <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="d-sm-flex align-items-baseline report-summary-header">
+                          <h5 class="font-weight-semibold">Report Summary</h5> <span class="ml-auto"></span> <button class="btn btn-icons border-0 p-2"><i class="icon-refresh"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row report-inner-cards-wrapper">
+                      <div class=" col-md -6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">New Orders</span>
+                          <h4><span th:text="${dashboard.newOrderval}"></span> </h4>                       
+                          <span class="report-count">
+                         	<a href="/NexusClient/LoadOrdersbyStatus?statusid=NEWO">view</a>                           
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-success">
+                          <i class="icon-rocket"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">Collected by Nexus</span>
+                          <h4><span th:text="${dashboard.receiveToWearhouseval}"></span></h4>
+                          <span class="report-count"> 
+                          <a href="/NexusClient/LoadOrdersbyStatus?statusid=RCWH">view</a>
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                          <i class="icon-home"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">Dispatch to destination</span>
+                          <h4><span th:text="${dashboard.dispatchFromWearhouseval}"></span></h4>
+                          <span class="report-count"> 
+                          <a href="/NexusClient/LoadOrdersbyStatus?statusid=DIWH">view</a>
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-warning">
+                          <i class="icon-globe-alt"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">Receiver at Destination</span>
+                          <h4>#######</h4>
+                          <span class="report-count"> 
+                          <a href="/NexusClient/LoadOrdersbyStatus?statusid=REBR">view</a>
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                          <i class="icon-diamond"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row report-inner-cards-wrapper">
+                      <div class=" col-md -6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">Receive to Branch</span>
+                          <h4><span th:text="${dashboard.receiveToBranchval}"></span></h4>
+                          <span class="report-count"> 
+                            <a href="/NexusClient/LoadOrdersbyStatus?statusid=RCBR">view</a>
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-success">
+                          <i class="icon-rocket"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">Dispatch from Branch</span>
+                          <h4><span th:text="${dashboard.dispatchFromBranchval}"></span></h4>
+                          <span class="report-count"> <a href="/NexusClient/LoadOrdersbyStatus?statusid=DIBR">view</a>
+                          </span>
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                          <i class="icon-refresh"></i>
+                        </div>
+                      </div>
+                       <div class="col-md-6 col-xl report-inner-card">
+                       
+                        <div class="inner-card-text">
+                          
+                         <span class="report-title">Dilevered</span>
+                          <h4>2650</h4>
+                          <span class="report-count"> 5 Reports</span>
+                           
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                         <i class="icon-trophy"></i>  
+                        </div>
+                      </div> 
+                      
+                      
+                        <div class="col-md-6 col-xl report-inner-card"> 
+                       
+                        <div class="inner-card-text">
+                       
+                      <span class="report-title">Failed Dilevery</span>
+                          <h4>25,542</h4>
+                          <span class="report-count"> 9 Reports</span>
+                          
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                         <!-- <i class="icon-diamond"></i> --> 
+                        </div>
+                      </div>
+                      
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-sm-flex align-items-center mb-4">
+                      <h4 class="card-title mb-sm-0">Products Inventory</h4>
+                      <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> View all Products</a>
+                    </div>
+                    <div class="table-responsive border rounded p-1">
+                      <table class="table" id="example">
+                        <thead>
+                          <tr>
+                            <th class="font-weight-bold">Customer Name</th>
+                            <th class="font-weight-bold">Amount</th>
+                            <th class="font-weight-bold">Gateway</th>
+                            <th class="font-weight-bold">Created at</th>
+                            <th class="font-weight-bold">Paid at</th>
+                            <th class="font-weight-bold">Status</th>
+                            <th class="font-weight-bold">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr th:each="clientorder : ${clientorderlist}">
+                            <td th:text="${clientorder.customername}"></td>
+                            <td th:text="${clientorder.codamount}"></td>
+                            <td  th:text="${clientorder.ordertrackingid}"> </td>
+                            <td th:text="${clientorder.description}"> </td>
+                            <td th:text="${clientorder.paymenttype}"></td>
+                            <td th:text="${clientorder.orderadddate}"> </td>
+                            <td>
+                            <form method="POST" th:action="@{/LoadOrder}">
+                            <input type="hidden" name="ordertrackingid" id="ordertrackingid" th:value="${clientorder.ordertrackingid}" />
+    						<input type="submit" name="ordertrackingidinput" value="View" class="btn btn-primary btn-xs"/>
+                            
+                            </form>
+                              
+                            </td>
+                          </tr>
+                      
+                        </tbody>
+                      </table>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+</body>
+</html>

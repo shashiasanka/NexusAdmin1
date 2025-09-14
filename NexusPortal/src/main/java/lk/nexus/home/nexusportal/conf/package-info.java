@@ -1,1 +1,0 @@
-package lk.nexus.home.nexusportal.conf;

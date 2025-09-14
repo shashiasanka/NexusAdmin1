@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png">
+	
+<!-- Custom Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$( "#val-custprovince" ).change(function() {
+		var brcode =  $( "#val-custprovince option:selected" ).val();
+		
+		//alert(brcode);
+		$( "#val-district" ).empty();
+		 
+		$.ajax({url: "/NexusClient/districtList", 
+			  type: "get",
+			  data: { 
+				  provinceid: brcode 
+				    
+				  },
+			  success: function(result){
+
+				  var y1 ='<option th:value='+"0"+'>'+"Please select District "+'</option>';
+				  $('#val-district').append(y1);
+				  jQuery.each( result, function( i, val ) {
+					 //alert(val.areadescription); id name_en th:text="${i.name_en}"
+					 var y ='<option value='+val.id+' th:value='+val.id+'th:text='+val.name_en+' >'+val.name_en+'</option>';
+					 $('#val-district').append(y);	 
+					});
+				  }});
+		});
+});
+</script>
+
+
+</head>
+<body>
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo1.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact1.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text1.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+
+
+				<div class="header-right">
+					<ul class="clearfix">
+
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="images/user/1.png" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="app-profile.html"><i class="icon-user"></i>
+												<span>Profile</span></a></li>
+										<li><a href="email-inbox.html"><i
+												class="icon-envelope-open"></i> <span>Inbox</span>
+												<div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+										</li>
+
+										<hr class="my-2">
+										<li><a href="page-lock.html"><i class="icon-lock"></i>
+												<span>Lock Screen</span></a></li>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li class="nav-label"></li>
+					<li><a class="has-arrow" href="/NexusPortal/pendigregister"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Add Order</span>
+					</a></li>
+					<li><a class="has-arrow" href="/NexusClient/loaduploadpage"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Upload Orders</span>
+					</a></li>	
+
+					<li><a class="has-arrow" href="/NexusClient/pickuprequest"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Pickup Request</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="/NexusClient/search"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Search / Report</span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<!-- row -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="form-validation">
+
+									<form class="form-valide" action="#"
+										th:action="@{/Addorder}" th:object="${clientorder}" method="post">
+										
+										<div th:if="${clientorder.errorflag == 'N'}">
+								<div class="alert alert-warning" role="alert" ><p th:text="${clientorder.displayemessage}"></p> </div>
+						
+								</div>
+								<div th:if="${clientorder.errorflag == 'Y'}">
+								<div class="alert alert-danger" role="alert" ><p th:text="${clientorder.displayemessage}"></p> </div>
+						
+								</div>
+
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-orderid">Order
+												Id<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-orderid"
+													th:field="*{orderid}" name="val-orderid" />
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-trackingid">Tracking
+												ID <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-trackingid"
+													th:field="*{ordertrackingid}" name="val-trackingid" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-description">Description
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-description"
+													th:field="*{description}" name="val-description" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-cod">COD
+												Amount <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-cod"
+													th:field="*{codamount}" name="val-cod" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-cashtype">Cash
+												Type <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+
+												<select class="form-control" id="val-cashtype"	th:field="*{paymenttype}" style="width: 100%">
+													<option th:value="X" value="C">Please select Payment Type</option>
+													<option th:value="C" value="C">COD</option>
+													<option th:value="P" value="P">PAID</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-weight">Weight
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<select class="form-control" id="val-weight" th:field="*{weight}">
+													<option th:value="1" value="1">1</option>
+													<option th:value="2" value="2">2</option>
+													<option th:value="3" value="3">3</option>
+													<option th:value="4" value="4">4</option>
+													<option th:value="5" value="5">5</option>
+													<option th:value="6" value="6">6</option>
+													<option th:value="7" value="7">7</option>
+													<option th:value="8" value="8">8</option>
+													<option th:value="9" value="9">9</option>
+													<option th:value="10" value="10">10</option>
+													<option th:value="11" value="11">11</option>
+													<option th:value="12" value="12">12</option>
+													<option th:value="13" value="13">13</option>
+													<option th:value="14" value="14">14</option>
+													<option th:value="15" value="15">15</option>
+													<option th:value="16" value="16">16</option>
+													<option th:value="17" value="17">17</option>
+													<option th:value="18" value="18">18</option>
+													<option th:value="19" value="19">19</option>
+													<option th:value="20" value="20">20</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-remark">Remarks
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-remark"
+													th:field="*{remarks}" name="val-nic" />
+											</div>
+										</div>
+										<!-- 
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-maincat">Main
+												Category <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<select class="form-control" id="val-maincat"
+													th:field="*{maincatcode}">
+													<option th:each="i : ${maincategorylist}"
+														th:value="${i.nexusmaincatid}"
+														th:text="${i.nexusmaincatdesc}"></option>
+												</select>
+											</div>
+										</div> 
+										
+										 -->
+										
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-custname">Customer
+												Name <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-custname" th:field="*{customername}" name="val-brno" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-custaddr">Customer
+												Address <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control"
+													id="val-custaddr" th:field="*{customeraddress}"
+													name="val-custaddr" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-phoneno1">Customer
+												Phone No 1 <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-phoneno1" th:field="*{customerphone}" name="val-phoneno1" />
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label"
+												for="val-phoneno2">Customer Phone No 2 <span
+												class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-phoneno2"
+													th:field="*{customerphone2}" name="val-phoneno2" />
+
+											</div>
+
+										</div>
+
+                                        <!-- 
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-custprovince1">Customer
+												Province <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label></label> <select class="form-control" id="val-custprovince"
+														th:field="*{province}" style="width: 100%">
+														<option th:value="0" >Please select province</option>
+														<option th:each="i : ${provincelist}"
+														th:value="${i.id}"
+														th:text="${i.name_en}"></option> 
+
+													</select>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-district">District
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<select class="form-control" id="val-district"
+													th:field="*{district}" style="width: 100%">
+																									
+												</select>
+											</div>
+										</div>
+										 -->
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-custprovince1">Nearest Branch <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label></label> <select class="form-control" id="val-custprovince" th:field="*{to_branch}" style="width: 100%">
+														<option th:value="0" >Please select branch</option>
+														<option th:each="i : ${branchlist}"
+														th:value="${i.branchcode}"
+														th:text="${i.branchdescription}"></option> 
+
+													</select>
+												</div>
+											</div>
+										</div>
+																			    
+										
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label"
+												for="val-nearcity">Sender Name <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-nearcity" name="sender-name" th:field="*{from_name}" />
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label"
+												for="val-nearcity">Sender Phone <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-nearcity" name="sender-phone" th:field="*{from_phone}" />
+											</div>
+										</div>
+										
+												<div class="form-group row">
+											<label class="col-lg-4 col-form-label"
+												for="val-nearcity">From Address <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-nearcity" name="sender-phone" th:field="*{from_address}" />
+											</div>
+										</div>
+										
+
+
+										<div class="form-group row">
+											<div class="col-lg-8 ml-auto">
+												<input type="submit" th:name="action" th:value="Submit"
+													class="btn btn-primary" value="Submit" /> <input
+													type="submit" th:name="action" th:value="Cancel"
+													class="btn btn-danger" value="Cancel" />
+											</div>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<p>-</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright &copy; by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+					2018
+				</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<script src="plugins/common/common.min.js"></script>
+	<script src="js/custom.min.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/gleek.js"></script>
+	<script src="js/styleSwitcher.js"></script>
+</body>
+</html>
+<!-- Links https://www.baeldung.com/spring-form-multiple-submit-buttons 
+https://www.baeldung.com/spring-thymeleaf-request-parameters
+-->

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$( "#bizdiv" ).hide();
+	$( "#persdiv" ).hide();
+	
+	$('input[type=radio][name=accouttype]').change(function() {
+		
+		//alert(this.value);
+	    if (this.value == 'b') {
+	    	$( "#bizdiv" ).show();
+	    	$( "#persdiv" ).hide();
+	    	
+	    	$( "#accouttypebiz" ).val('b');
+	    }
+	    else if (this.value == 'p') {
+	    	$( "#bizdiv" ).hide();
+	    	$( "#persdiv" ).show();
+	    	$( "#accouttypeper" ).val('p');
+	    	
+	    }
+	});
+	
+	
+	$( "#pickupbranchp" ).change(function() {
+		var brcode =  $( "#pickupbranchp option:selected" ).val();
+		//alert(brcode);
+		$( "#nearestcityp" ).empty();
+		
+		$.ajax({url: "/NexusClient/nearestcity", 
+			  type: "get",
+			  data: { 
+				  branchId: brcode 
+				    
+				  },
+			  success: function(result){ 
+		    
+				 // alert(result);
+				//  var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+				  var y1 ='<option th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+				  $('#nearestcityp').append(y1);
+				  jQuery.each( result, function( i, val ) {
+					 //alert(val.areadescription);
+					 var y ='<option value='+val.areacode+'th:value='+val.areacode+'>'+val.areadescription+'</option>';
+					 $('#nearestcityp').append(y);	 
+					});
+				  }});
+		
+		});
+	
+	
+	
+	
+	$( "#pickupbranchb" ).change(function() {
+		var brcode =  $( "#pickupbranchb option:selected" ).val();
+		//alert(brcode);
+		$( "#nearestcityb" ).empty();
+		
+		$.ajax({url: "/NexusClient/nearestcity", 
+			  type: "get",
+			  data: { 
+				  branchId: brcode 
+				    
+				  },
+			  success: function(result){
+		    
+				 // alert(result);
+				//  var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+				  var y1 ='<option th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+				  $('#nearestcityb').append(y1);
+				  jQuery.each( result, function( i, val ) {
+					 //alert(val.areadescription);
+					 var y ='<option value='+val.areacode+'th:value='+val.areacode+'>'+val.areadescription+'</option>';
+					 $('#nearestcityb').append(y);	 
+					});
+				  }});
+		
+		});
+	
+	
+$("#bankNamebiz").change(function() {
+		
+		var bankcode =  $( "#bankNamebiz option:selected" ).val();
+		//alert(bankcode);
+		$( "#bankAccountBranchbiz" ).empty();
+	  $.ajax(  {url: "/NexusClient/branclist", 
+		  type: "get",
+		  data: { 
+			  bankcode: bankcode 			   
+			  },
+		  success: function(result){
+			  var y1 ='<option th:value='+"X"+'>'+"Please select Bank Branch "+'</option>';
+			  $('#bankAccountBranchbiz').append(y1);
+			  jQuery.each( result, function( i, val ) {
+
+				 var y ='<option value='+val.barnchcode+' th:value='+val.barnchcode+'>'+val.branchdescription+'</option>';
+				 $('#bankAccountBranchbiz').append(y);	 
+				});
+			  }});		
+	});
+	
+
+$("#bankNamepers").change(function() {
+	
+	var bankcode =  $( "#bankNamepers option:selected" ).val();
+	//alert(bankcode);
+	$( "#bankAccountBranchpers" ).empty();
+  $.ajax(  {url: "/NexusClient/branclist", 
+	  type: "get",
+	  data: { 
+		  bankcode: bankcode 			   
+		  },
+	  success: function(result){
+		  var y1 ='<option th:value='+"X"+'>'+"Please select Bank Branch "+'</option>';
+		  $('#bankAccountBranchpers').append(y1);
+		  jQuery.each( result, function( i, val ) {
+
+			 var y ='<option value='+val.barnchcode+' th:value='+val.barnchcode+'>'+val.branchdescription+'</option>';
+			 $('#bankAccountBranchpers').append(y);	 
+			});
+		  }});		
+});
+
+	
+	
+	
+	
+	});
+</script>
+</head>
+<body>
+<div class="container">
+		<h2>Welcome to Nexus Delivery - Customer Registration</h2> 
+		<div class="form-group">
+				<label for="pwd">Account type:</label>
+				 <fieldset> 
+			<!-- <input type="radio" name="accouttype"  value="p" checked="checked"> Personal -->
+			<input type="radio" name="accouttype"  value="p" > Personal	
+				<input type="radio" name="accouttype"  value="b"> Business <br> 
+				</fieldset> 
+		</div>	
+		
+		<div th:if="${registerstatus == 'Y'}">
+				<div class="alert alert-success" role="alert">Activation Link sent to email. Please check.</div>
+
+			</div>
+			
+			<div th:if="${accexsist == 'Y'}">
+				<div class="alert alert-warning" role="alert">Already registered Account. Please check.</div>
+
+			</div>
+			<div th:if="${registerData.isregistersuccess == 'N'}">
+				<div class="alert alert-warning"   role="alert">
+				<p th:text="${registerData.errormessage}"></p>
+				</div>
+
+			</div>
+		
+		<div id="bizdiv">
+				<form action="#" th:action="@{/viewagreement}"
+								th:object="${registerData}" method="post">
+			
+				<div class="form-group" id="personalnicdiv" >
+				<label for="pwd"> </label> <input type="hidden" class="form-control" th:field="*{accouttype}" value="b" th:value="b" id="accouttypebiz" name="accouttype" >
+			</div>
+			
+			<div class="form-group" id="businessnamediv" >
+				<label for="pwd" >Business Name :</label> <input type="text" class="form-control" id="businessname" name="businessname"	th:field="*{fullname_businessname}">
+			</div>
+			
+			
+			<div class="form-group" id="addressdiv"> 
+				<label for="pwd">Address:</label>
+				 <input type="text" class="form-control" id="address1"	name="address1" th:field="*{address1}">
+			</div>
+				<div class="form-group" id="emailaddressdiv">
+				<label for="pwd">Email:</label> 
+				<input type="email"	class="form-control" id="emailaddress"	name="emailaddress" th:field="*{emailaddress}">
+			</div>
+			<div class="form-group" id="pickupbranchdiv">
+				<label for="pwd">Pickup Branch:</label> <select class="form-control" id="pickupbranchb"
+										style="width: 100%" th:field="*{pickupbranch}" >
+										<option  th:value="X">Please select Pickup branch</option>
+										<option th:each="i : ${branchlist}" th:value="${i.branchcode}" th:text="${i.branchdescription}">
+    														</option>
+										 
+									</select>
+			</div>
+		
+		<div class="form-group" id="nearestcitydiv">
+				<label for="pwd">City:</label> <select class="form-control" id="nearestcityb"
+										style="width: 100%"  >
+																			</select>
+			</div>
+			
+			
+			
+			
+			<div class="form-group" id="businessregnodiv" >
+				<label for="pwd"> Business Registration No :</label> <input type="text" class="form-control" id="businessregno" name="businessregno" th:field="*{brno}">
+			</div>
+		
+		<div class="form-group" id="relationshiptobusinessdiv" >
+				<label for="pwd"> Relationship to Business :</label> 
+				
+				<select class="form-control" style="width: 100%" id="relationshiptobusiness" name="relationshiptobusiness" th:field="*{relationshiptobusiness}" >
+										<option value="ow" th:value="ow">Owner</option>
+										<option value="ao" th:value="ao">Authorized officer</option>										
+				</select>
+			</div>
+			
+		<div class="form-group" id="contactpersondiv" >  
+				<label for="pwd"> Contact Person :</label> <input type="text" class="form-control" id="contactperson" name="contactperson" th:field="*{contactperson}">
+			</div>
+			
+			<div class="form-group" id="contactpersonnicdiv" >
+				<label for="pwd"> Contact NIC :</label> <input type="text" class="form-control" id="contactpersonnic" name="contactpersonnic" th:field="*{contactpersonnic}">
+			</div>
+			
+			<div class="form-group" id="contactno1">
+				<label for="pwd">Contact no:</label> <input type="text" class="form-control" id="contactno" name="contactno" th:field="*{contactno}">
+			</div>
+			 
+			<div class="form-group"  id="contactno2">
+				<label for="pwd">Contact no (Land Line):</label> <input type="text" class="form-control" id="contactno2" name="contactno2" th:field="*{contactno2}">
+			</div>	
+
+			<h3>Bank Details </h3>
+			<div class="form-group">
+				<label for="pwd">Bank Name:</label> <select class="form-control"
+										style="width: 100%" id="bankNamebiz"
+										name="bankNamebiz" th:field="*{bankname}" >
+										<option value="X" th:value="X">Please select Bank</option>
+										<option th:each="i : ${banklist}" th:value="${i.bankcode}" th:text="${i.bankdescription}">
+    														</option>
+										
+									</select> 
+			</div>
+			<div class="form-group">
+			
+				<label for="pwd">Bank Account Branch Name:</label> 											
+											<select class="form-control"
+										style="width: 100%" id="bankAccountBranchbiz"
+										name="bankAccountBranchbiz" th:field="*{bankaccountbranch}" >
+										<option value="X" th:value="X">Please select  Branch</option>
+										
+										
+									</select> 
+			</div>
+			<div class="form-group">
+				<label for="pwd">Account Holder Name:</label> <input type="text"
+					class="form-control" id="accountHolderName"	name="accountHolderName" th:field="*{accountholdername}">
+			</div>
+			<div class="form-group">
+			
+				<label for="pwd">Bank Account Type:</label> <select
+											class="form-control"  id="bankAccountType"
+											name="bankAccountType" th:field="*{bankaccounttype}">
+											<option value="C" th:value="C">Current</option>
+											<option value="S" th:value="S">Savings</option>
+											
+										</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="pwd">Bank Account No:</label> <input type="text"
+											class="form-control" id="accountid"
+											name="accountid" th:field="*{accountid}">
+			</div>			
+				
+			<div class="form-group">
+				<label for="pwd">Payment method:</label> 
+										<select
+											class="form-control"  id="bankAccountType"
+											name="bankAccountType" th:field="*{payementtype}">
+											<option value="3" th:value="3">with in 3 days - additional 3% charge</option>
+											<option value="7" th:value="7">with in one week</option>
+											<option value="14" th:value="14">with in 2 week</option>
+											<option value="31" th:value="31">with in one month</option>											
+											</select>
+			</div>
+			
+			<h4>  </h4>
+			
+			<div class="form-group">
+				<label for="pwd">SMS Notification Options:</label>
+				 <fieldset> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="1" value="1"> ON RECEVIED BY PICKUP BRANCH<br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="2" value="2"> ON RECEIVED BY  HEAD OFFICE <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="3" value="3"> ON DISPATCH TO DESTINATION BRANCH <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="4" value="4"> ON RECEIVED AT DESTINATION BRANCH <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="5" value="5"> ON OUT FOR DELIVERY <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="6" value="6"> ON RESCHDULED AT 1ST ATTEMPT<br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="7" value="7"> ON RESCHDULED AT 2ND ATTEMPT<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="8" value="8"> ON RESCHDULED AT 3RD ATTEMPT<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="9" value="9"> ON RETURNED	<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="10" value="10"> ON DELIVERED<br>
+			 </fieldset> 
+				 
+				 <p>only 4 message are free 2 Rs will be charged for each additional SMS selection</p>
+				
+			</div>
+			<input type="submit" class="btn btn-primary" value="Next"/>
+			</form>
+			</div>
+		
+		
+		
+	
+	<div id="persdiv">
+			<form action="#" th:action="@{/viewagreement}"
+								th:object="${registerData}" method="post">
+								
+								<div th:if="${registerData.isregistersuccess == 'Y'}">
+				<div class="alert alert-success" role="alert">Activation Link sent to email. Please check.</div>
+
+			</div>
+			
+			<div th:if="${registerData.isregistersuccess == 'N'}">
+				<div class="alert alert-warning"   role="alert">
+				<p th:text="${registerData.errormessage}"></p>
+				</div>
+
+			</div>
+								
+			<div class="form-group" id="personalnicdiv" >
+				<label for="pwd"> </label> <input type="hidden" class="form-control" th:field="*{accouttype}" value="p" th:value="p" id="accouttypeper" name="accouttype" >
+			</div>
+					
+			<div class="form-group" id="fullnamediv" >
+				<label for="pwd" >Name in Full:</label> <input type="text"
+					class="form-control" id="fullname" name="fullname"
+										th:field="*{fullname_businessname}">
+			</div>
+			<div class="form-group" id="personalnicdiv" > 
+				<label for="pwd"> NIC no:</label> <input type="text" class="form-control" id="nic" name="nic_drivinglicence" th:field="*{nic_drivinglicence}">
+			</div>
+		
+			
+			<div class="form-group" id="webstorenamediv"> 
+				<label for="pwd">System Name :</label> <input type="text"
+					class="form-control" id="webstore"	name="webstore" th:field="*{webstore}">
+			</div>
+			<div class="form-group" id="addressdiv">
+				<label for="pwd">Address:</label>
+				 <input type="text" class="form-control" id="address1"	name="address1" th:field="*{address1}">
+			</div>
+				<div class="form-group" id="emailaddressdiv">
+				<label for="pwd">Email:</label> 
+				<input type="email"	class="form-control" id="emailaddress"	name="emailaddress" th:field="*{emailaddress}">
+			</div>
+			<div class="form-group" id="pickupbranchdiv"> 
+				<label for="pwd">Pickup Branch:</label> <select class="form-control" id="pickupbranchp"
+										style="width: 100%" th:field="*{pickupbranch}" >
+										<option  th:value="X">Please select Pickup branch</option>
+										<option th:each="i : ${branchlist}" th:value="${i.branchcode}" th:text="${i.branchdescription}">
+    														</option>
+										 
+									</select>
+			</div>
+		
+		<div class="form-group" id="nearestcitydiv"> 
+				<label for="pwd">City:</label> <select class="form-control" id="nearestcityp"
+										style="width: 100%"  >
+																			</select>
+			</div>
+			
+
+			
+			<div class="form-group" id="contactno1">
+				<label for="pwd">Contact no:</label> <input type="text" class="form-control" id="contactno" name="contactno" th:field="*{contactno}">
+			</div>
+			
+			<div class="form-group"  id="contactno2">
+			
+				<label for="pwd">Contact no (Land Line):</label> <input type="text" class="form-control" id="contactno2" name="contactno2" th:field="*{contactno2}">
+			</div>	
+
+			<h3>Bank Details </h3>
+			<div class="form-group"> 
+				<label for="pwd">Bank Name:</label> <select class="form-control"
+										style="width: 100%" id="bankNamepers"
+										name="bankNamepers" th:field="*{bankname}" >
+										<option value="X" th:value="X">Please select Bank</option>
+										<option th:each="i : ${banklist}" th:value="${i.bankcode}" th:text="${i.bankdescription}">
+    														</option>
+										
+									</select> 
+			</div>
+			<div class="form-group">
+				<label for="pwd">Bank Account Branch Name:</label> 											
+											<select class="form-control"
+										style="width: 100%" id="bankAccountBranchpers"
+										name="bankAccountBranchpers" th:field="*{bankaccountbranch}" >
+										<option value="X" th:value="X">Please select  Branch</option>						
+										
+									</select> 
+			</div>
+			<div class="form-group">
+				<label for="pwd">Account Holder Name:</label> <input type="text"
+					class="form-control" id="accountHolderName"	name="accountHolderName" th:field="*{accountholdername}">
+			</div>
+			
+			<div class="form-group">
+				<label for="pwd">Bank Account Type:</label> <select
+											class="form-control"  id="bankAccountType"
+											name="bankAccountType" th:field="*{bankaccounttype}">
+											<option value="X" th:value="X">Please Bank Account Type</option>	
+											<option value="C" th:value="C">Current</option>
+											<option value="S" th:value="S">Savings</option>
+											
+										</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="pwd">Bank Account No:</label> <input type="text"
+											class="form-control" id="accountid"
+											name="accountid" th:field="*{accountid}">
+			</div>
+			
+		
+				
+			<div class="form-group">
+				<label for="pwd">Payment method:</label> 
+										<select
+											class="form-control"  id="payementtype"
+											name="bankAccountType" th:field="*{payementtype}">
+											<option value="3" th:value="3">with in 3 days - additional 3% charge</option>
+											<option value="7" th:value="7">with in one week</option>
+											<option value="14" th:value="14">with in 2 week</option>
+											<option value="31" th:value="31">with in one month</option>											
+											</select>
+			</div>
+			
+			<h4>  </h4>
+			
+			<div class="form-group">
+				<label for="pwd">SMS Notification Options:</label>
+				 <fieldset> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="1" value="1"> ON RECEVIED BY PICKUP BRANCH<br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="2" value="2"> ON RECEIVED BY  HEAD OFFICE <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="3" value="3"> ON DISPATCH TO DESTINATION BRANCH <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="4" value="4"> ON RECEIVED AT DESTINATION BRANCH <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="5" value="5"> ON OUT FOR DELIVERY <br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="6" value="6"> ON RESCHDULED AT 1ST ATTEMPT<br> 
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="7" value="7"> ON RESCHDULED AT 2ND ATTEMPT<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="8" value="8"> ON RESCHDULED AT 3RD ATTEMPT<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="9" value="9"> ON RETURNED	<br>
+				<input type="checkbox" name="smsalert" th:field="*{smsalert}" th:value="10" value="10"> ON DELIVERED<br>
+				
+				
+				 </fieldset> 
+				 
+				 <p>only 4 message are free 2 Rs will be charged for each additional SMS selection</p>
+				
+			</div>
+			
+			<input type="submit" class="btn btn-primary" value="Next"/>
+			</form>
+			</diV>
+	
+	  
+		
+		
+		
+</div>
+
+</body>
+</html>

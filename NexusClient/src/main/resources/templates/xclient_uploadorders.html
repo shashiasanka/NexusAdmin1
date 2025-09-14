@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png">
+	
+<!-- Custom Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+});
+</script>
+
+
+</head>
+<body>
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo1.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact1.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text1.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+
+
+				<div class="header-right">
+					<ul class="clearfix">
+
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="images/user/1.png" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="app-profile.html"><i class="icon-user"></i>
+												<span>Profile</span></a></li>
+										<li><a href="email-inbox.html"><i
+												class="icon-envelope-open"></i> <span>Inbox</span>
+												<div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+										</li>
+
+										<hr class="my-2">
+										<li><a href="page-lock.html"><i class="icon-lock"></i>
+												<span>Lock Screen</span></a></li>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li class="nav-label"></li>
+					<li><a class="has-arrow" href="/NexusPortal/pendigregister"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Add Order</span>
+					</a></li>
+					<li><a class="has-arrow" href="/NexusClient/loaduploadpage"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Upload Orders</span>
+					</a></li>	
+					<li><a class="has-arrow" href="/NexusClient/pickuprequest"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Pickup Request</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="/NexusClient/search"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Search / Report</span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<!-- row -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+						
+						
+						
+							<div class="card-body">
+								<div class="form-validation">
+								 <form class="form-sample" action="#"
+															th:action="@{/downloadfile}"   method="post">
+														<input type="hidden" name="fileName" id="fileName" th:value="${errfilename}" />
+															
+															 <input type="submit" class="btn mb-1 btn-info" value="Download Template"/>
+															</form> 
+								
+								<div th:if="${errorflag == 'N'}">
+								<div class="alert alert-warning" role="alert" ><p th:text="${displayemessage}"></p> </div>
+						
+								</div>
+								<div th:if="${errorflag == 'Y'}">
+								<!-- 
+								<div class="alert alert-danger" role="alert" ><p></p> </div>
+								<p>Check out <a href="/NexusClient/file/${errfilename}" target="_blank">freeCodeCamp</a>.</p>
+								 -->
+								
+								 <form class="form-sample" action="#"
+															th:action="@{/file}"   method="post">
+														<input type="hidden" name="fileName" id="fileName" th:value="${errfilename}" />
+															
+															 <input type="submit" class="btn mb-1 btn-danger" value="View Error Records"/>
+															</form> 
+								</div>
+
+									<form class="form-valide" action="/NexusClient/uploadorders"
+										 enctype="multipart/form-data" method="post">
+										
+										
+
+										<div class="form-group">
+                                            <input type="file" name="file" class="form-control-file">
+                                        </div>
+										
+										
+
+
+										<div class="form-group row ">
+											<div class="col-lg-8 ml-auto">
+												<input type="submit" th:name="action" th:value="Submit"
+													class="btn btn-primary" value="Submit" /> <input
+													type="submit" th:name="action" th:value="Cancel"
+													class="btn btn-danger" value="Cancel" />
+											</div>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<p>-</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright &copy; by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+					2018
+				</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<script src="plugins/common/common.min.js"></script>
+	<script src="js/custom.min.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/gleek.js"></script>
+	<script src="js/styleSwitcher.js"></script>
+</body>
+</html>
+<!-- Links https://www.baeldung.com/spring-form-multiple-submit-buttons 
+https://www.baeldung.com/spring-thymeleaf-request-parameters
+-->

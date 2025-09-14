@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png">
+<!-- Custom Stylesheet -->
+<link href="plugins/tables/css/datatable/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" />
+
+
+
+
+</head>
+<body>
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+
+
+				<div class="header-right">
+					<ul class="clearfix">
+
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="images/user/1.png" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="app-profile.html"><i class="icon-user"></i>
+												<span>Profile</span></a></li>
+										<li><a href="email-inbox.html"><i
+												class="icon-envelope-open"></i> <span>Inbox</span>
+												<div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+										</li>
+
+										<hr class="my-2">
+										<li><a href="page-lock.html"><i class="icon-lock"></i>
+												<span>Lock Screen</span></a></li>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li class="nav-label"></li>
+					<li><a class="has-arrow" href="/NexusClient/clientorder"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Add Orders</span>
+					</a></li>
+					<li><a class="has-arrow" href="/NexusClient/loaduploadpage"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Upload Orders</span>
+					</a></li>
+					<li><a class="has-arrow" href="/NexusClient/pickuprequest"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Pickup Request</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="/NexusClient/search"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Search / Report </span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<!-- row -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="row">
+
+									<div class="table-responsive">
+										<table
+											class="table table-striped table-bordered zero-configuration"
+											id="searchtbl">
+											<thead>
+												<tr>
+													<th>Order Id123</th>
+													<th>Order Tracking ID</th>
+													<th>Payment Type</th>
+													<th>Amount</th>
+													<th>Remark</th>
+													<th>Create Date</th>
+													<th>Status</th>
+													<!-- <th></th> -->	
+													<th></th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="r : ${orderlist}">
+													<td th:text="${r.orderid}"></td>
+													<td th:text="${r.ordertrackingid}"></td>
+													<td th:text="${r.paymenttype}"></td>
+													<td th:text="${r.codamount}"></td>
+													<td th:text="${r.remarks}"></td>
+													<td th:text="${r.createdDate}"></td>
+													<td th:text="${r.orderstatusdesc}"></td>
+													<!--  <td>
+														<form class="form-sample" action="#"
+															th:action="@{/ViewOrder}" method="post">
+															<input type="hidden" name="trackingid" id="trackingid"
+																th:value="${r.ordertrackingid}" /> <input type="submit"
+																class="btn mb-1 btn-info" value="View" />
+														</form>
+													</td> -->
+													<td><a class="btn mb-1 btn-outline-primary">View
+															Data</a></td>
+													<td>																										
+															
+															<form class="form-sample" action="#"
+															th:action="@{/WayBillPrint2}" method="post" target="_blank" >
+															<input type="hidden" name="ordertrackingid" id="ordertrackingid"
+																th:value="${r.ordertrackingid}" /> <input type="submit"
+																class="btn mb-1 btn-info" value="PRINT WAYBILL" />														
+																
+														</form>
+													</td>
+												</tr>
+
+
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Order Id</th>
+													<th>Order Tracking ID</th>
+													<th>Payment Type</th>
+													<th>Amount</th>
+													<th>Remark</th>
+													<th>Create Date</th>
+													<th>Status</th>
+												<!--<th></th> -->	
+													<th></th>
+													<th></th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+
+								</div>
+								<div class="row"></div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+
+		<!--**********************************
+           Model Content start
+        ***********************************-->
+		<div class="modal fade bd-example-modal-lg" id="rrrrrrrr"
+			tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">Header</div>
+					<div class="modal-body" id="modal-body-xyz">
+						<p id="orderid"></p>
+
+
+
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+							<form class="form-sample" action="#" th:action="@{/Readytosend}"
+							method="post">
+						
+							<input type="hidden" name="trackingid" id="trackingid-modal-ready2-send" /> <input
+								type="submit"  class="btn mb-1 btn-info" value="Mark as Ready to Send " />
+								</form>
+						
+						<form class="form-sample" action="#" th:action="@{/ViewOrder}"
+							method="post">
+							<input type="hidden" name="trackingid" id="trackingid-modal-view2-update" /> <input
+								type="submit" class="btn mb-1 btn-info" value="View to Update" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" id="reomoveready2send"
+			tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">Header:reomoveready2send</div>
+					<div class="modal-body" id="modal-body-reomoveready2send">
+						<p id="orderid"></p>
+
+
+
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+							<form class="form-sample" action="#" th:action="@{/removetosendHO}"
+							method="post">
+						
+							<input type="hidden" name="trackingid" id="modal-remove2-send-remove" /> <input
+								type="submit"  class="btn mb-1 btn-info" value="Remove Send to HO " />
+								</form>
+						
+						<form class="form-sample" action="#" th:action="@{/ViewOrder}"
+							method="post">
+							<input type="hidden" name="trackingid" id="modal-remove2-send-update" /> <input
+								type="submit" class="btn mb-1 btn-info" value="View to Update" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+           Model Content Emd
+        ***********************************-->
+
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright &copy; by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+					2018
+				</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<script src="plugins/common/common.min.js"></script>
+	<script src="js/custom.min.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/gleek.js"></script>
+	<script src="js/styleSwitcher.js"></script>
+
+	<script src="plugins/tables/js/jquery.dataTables.min.js"></script>
+	<script src="plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+	<script src="plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+						
+							
+							$("#searchtbl").delegate("a", "click",function() {
+
+								var id1 = $(this).closest("tr").find('td:eq(1)').text();
+								//alert($(this).attr("class")+"++++++");
+								var click_button_class = $(this).attr("class");
+									
+								if(click_button_class == 'btn mb-1 btn-outline-primary'){
+									
+									var modelFlag = null;
+									var ordertrackingid = null;
+
+									var paymenttype = "";
+
+									var codamount = "";
+
+									var weight = "";
+
+									var remarks = "";
+
+									var customername = "";
+
+									var customeraddress = "";
+
+									var customerphone = "";
+
+									var description = "";
+
+									var orderstatusdesc = "";
+
+									var paymenttypedesc = "";
+
+									var charge_weight_amount = "";
+
+									var charge_nexus_amount = "";
+									
+									var ready_to_send = "";
+									
+									var to_branch ="";
+
+									$("#modal-body-xyz").empty();
+
+									$.ajax({
+											url : '/NexusClient/ViewOrderDataGet',
+											type : 'get',
+											data : {"ordertrackingid" : id1},
+											success : function(data,textStatus,jQxhr) {
+												
+												modelFlag = data.ready_to_send;
+												//if(data.ready_to_send == "0"){
+													//modelFlag = data.ready_to_send;
+													//alert("0000000000000000000000000000000000000000");
+												//}
+												if(data.ready_to_send == "0"){
+													//alert("0000000000000000000000000000000000000000");
+												$('#modal-body-xyz').append('<table border="1" >');
+									
+													ordertrackingid = data.ordertrackingid;
+													$('#trackingid-modal').val(id1);
+													$('#modal-body-xyz').append('<tr><td>Order trackingid </td><td>'+ ordertrackingid+ '</td></tr>');
+													paymenttype = data.paymenttype;
+													$('#modal-body-xyz').append('<tr><td> Paymenttype </td><td>'+ paymenttype+ '</td></tr>');
+													codamount = data.codamount;
+													$('#modal-body-xyz').append('<tr><td> COD Amount </td><td>'+ codamount+ '</td></tr>');
+													weight = data.weight;
+													$('#modal-body-xyz').append('<tr><td> weight </td><td>'	+ weight + '</td></tr>');
+													remarks = data.remarks;
+													$('#modal-body-xyz').append('<tr><td> Remarks </td><td>'+ remarks+ '</td></tr>');
+													customername = data.customername;
+													$('#modal-body-xyz').append('<tr><td> Customer Name </td><td>'+ customername + '</td></tr>');
+													customeraddress = data.customeraddress;
+													$('#modal-body-xyz').append('<tr><td> Customer address </td><td>'+ customeraddress+ '</td></tr>');
+													customerphone = data.customerphone;
+													$('#modal-body-xyz').append('<tr><td> Customer phone </td><td>'	+ customerphone + '</td></tr>');
+													description = data.description;
+													$('#modal-body-xyz').append('<tr><td> Description </td><td>'+ description + '</td></tr>');
+													orderstatusdesc = data.orderstatusdesc;
+													$('#modal-body-xyz').append('<tr><td> Order status </td><td>'+ orderstatusdesc + '</td></tr>');
+													paymenttypedesc = data.paymenttypedesc;
+													
+													$('#modal-body-xyz').append('<tr><td> Paymenttype description </td><td>'+ paymenttypedesc + '</td></tr>');
+													charge_weight_amount = data.charge_weight_amount;
+													$('#modal-body-xyz').append('<tr><td> Weight Amount </td><td>'+ charge_weight_amount+ '</td></tr>');
+													charge_nexus_amount = data.charge_nexus_amount;
+													$('#modal-body-xyz').append('<tr><td> nexus charge amount </td><td>'+ charge_nexus_amount + '</td></tr>');
+													ready_to_send = data.ready_to_send;
+													$('#modal-body-xyz').append('<tr><td> Ready to SEND  </td><td>'+ ready_to_send + '</td></tr>');												
+													
+													to_branch =data.to_branch;
+													$('#modal-body-xyz').append('<tr><td> Ready to SEND  </td><td>'+ to_branch + '</td></tr>');	
+													$('#trackingid-modal-view2-update').val(id1);
+													$('#trackingid-modal-ready2-send').val(id1);
+													$('#modal-body-xyz').append("</table>");
+													
+													//alert("modelFlag:"+modelFlag);
+													
+														$('#rrrrrrrr').modal('show');
+												       }else{
+												    	   //-----------------data.ready_to_send != "0" START ----------------------------
+												    	   $('#modal-body-reomoveready2send').append('<table border="1" >');
+									
+													ordertrackingid = data.ordertrackingid;
+													$('#trackingid-modal').val(id1);
+													$('#modal-body-reomoveready2send').append('<tr><td>Order trackingid </td><td>'+ ordertrackingid+ '</td></tr>');
+													paymenttype = data.paymenttype;
+													$('#modal-body-reomoveready2send').append('<tr><td> Paymenttype </td><td>'+ paymenttype+ '</td></tr>');
+													codamount = data.codamount;
+													$('#modal-body-reomoveready2send').append('<tr><td> COD Amount </td><td>'+ codamount+ '</td></tr>');
+													weight = data.weight;
+													$('#modal-body-reomoveready2send').append('<tr><td> weight </td><td>'	+ weight + '</td></tr>');
+													remarks = data.remarks;
+													$('#modal-body-reomoveready2send').append('<tr><td> Remarks </td><td>'+ remarks+ '</td></tr>');
+													customername = data.customername;
+													$('#modal-body-reomoveready2send').append('<tr><td> Customer Name </td><td>'+ customername + '</td></tr>');
+													customeraddress = data.customeraddress;
+													$('#modal-body-reomoveready2send').append('<tr><td> Customer address </td><td>'+ customeraddress+ '</td></tr>');
+													customerphone = data.customerphone;
+													$('#modal-body-reomoveready2send').append('<tr><td> Customer phone </td><td>'	+ customerphone + '</td></tr>');
+													description = data.description;
+													$('#modal-body-reomoveready2send').append('<tr><td> Description </td><td>'+ description + '</td></tr>');
+													orderstatusdesc = data.orderstatusdesc;
+													$('#modal-body-reomoveready2send').append('<tr><td> Order status </td><td>'+ orderstatusdesc + '</td></tr>');
+													paymenttypedesc = data.paymenttypedesc;
+													
+													$('#modal-body-reomoveready2send').append('<tr><td> Paymenttype description </td><td>'+ paymenttypedesc + '</td></tr>');
+													charge_weight_amount = data.charge_weight_amount;
+													$('#modal-body-reomoveready2send').append('<tr><td> Weight Amount </td><td>'+ charge_weight_amount+ '</td></tr>');
+													charge_nexus_amount = data.charge_nexus_amount;
+													$('#modal-body-reomoveready2send').append('<tr><td> nexus charge amount </td><td>'+ charge_nexus_amount + '</td></tr>');
+													ready_to_send = data.ready_to_send;
+													$('#modal-body-reomoveready2send').append('<tr><td> Ready to SEND  </td><td>'+ ready_to_send + '</td></tr>');
+													to_branch =data.to_branch;
+													$('#modal-body-reomoveready2send').append('<tr><td> Ready to SEND  </td><td>'+ to_branch + '</td></tr>');
+													$('#modal-remove2-send-remove').val(id1);
+													$('#modal-remove2-send-update').val(id1);
+													//$('#trackingid-modal-view2-update123').val(id1);
+													 
+													
+													$('#modal-body-reomoveready2send').append("</table>");
+													
+													//alert("modelFlag:"+modelFlag);
+													
+														$('#reomoveready2send').modal('show');
+												    	   
+												    	   //-----------------data.ready_to_send != "0" END ----------------------------												    	   
+												       }
+													
+													
+																			},
+																			error : function(
+																					jqXhr,
+																					textStatus,
+																					errorThrown) {
+																				//console.log( errorThrown );
+																				alert("ERRORR");
+																			}
+																		});
+																		/*
+																$('#modal-body-xyz').append("</table>");
+														
+																	alert("modelFlag:"+modelFlag);
+																	$('#rrrrrrrr').modal('show');
+																*/
+																
+									
+								}
+								
+								/*
+								if(click_button_class == 'btn mb-2 btn-outline-primary'){
+									alert("PDFFFFFFFFFFFFF");
+									
+									$.ajax({
+										url : '/NexusClient/WayBillPrint2',
+										type : 'post',
+										data : {"ordertrackingid" : id1},
+										success : function(data,textStatus,jQxhr) {
+
+											
+
+																		},
+																		error : function(
+																				jqXhr,
+																				textStatus,
+																				errorThrown) {
+																			//console.log( errorThrown );
+																			alert("ERRORR");
+																		}
+																	});
+									
+								}  */
+								
+								
+									
+															});
+							
+						});
+	</script>
+
+</body>
+</html>

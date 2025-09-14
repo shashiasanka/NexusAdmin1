@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	
+<script>
+$(document).ready(function(){
+	
+	 
+	
+	//$( "#personalnicdiv" ).hide();
+	$( "#accouttype" ).change(function() {
+		//  alert( "Handler for .change() called." );
+		//$( "#personalnicdiv" ).hide();
+		 	
+		$( "#businessregnodiv" ).hide();
+		$( "#businessaddressdiv" ).hide();
+		$( "#relationshiptobusinessdiv" ).hide();
+		
+		var x =  $( "#accouttype option:selected" ).val();
+		//alert(x);
+		if(x =="p"){
+			
+			$( "#personalnicdiv" ).show();
+			$( "#pickupbranchdiv" ).show();
+			$( "#emailaddressdiv" ).show();
+			$( "#addressdiv" ).show();
+			$( "#webstorenamediv" ).show();
+			$( "#fullnamediv" ).show();
+			$( "#nearestcity" ).show();
+			
+			$( "#contactno1" ).show();
+			$( "#contactno2" ).show();
+		}
+		if(x =="b"){
+			
+			
+			$( "#personalnicdiv" ).hide();
+			$( "#pickupbranchdiv" ).hide();
+			$( "#emailaddressdiv" ).hide();
+			$( "#addressdiv" ).hide();
+			$( "#webstorenamediv" ).hide();
+			$( "#fullnamediv" ).hide();
+			    
+			
+			$( "#businessnamediv" ).show();
+			$( "#addressdiv" ).show();
+			$( "#emailaddressdiv" ).show();
+			$( "#pickupbranchdiv" ).show();
+			
+			$( "#businessregnodiv" ).show();
+			$( "#businessaddressdiv" ).show();
+			$( "#relationshiptobusinessdiv" ).show();
+			$( "#personalnicdiv" ).show();
+			$( "#nearestcity" ).show();
+			
+			$( "#contactno1" ).show();
+			$( "#contactno2" ).show();
+			
+		}
+		
+		});
+	
+	
+	$("#pickupbranch").change(function() {
+				//defaultrate
+		var brcode =  $( "#pickupbranch option:selected" ).val();
+		$( "#nearestcity" ).empty();
+	  $.ajax({url: "/NexusClient/nearestcity", 
+		  type: "get",
+		  data: { 
+			  branchId: brcode 
+			    
+			  },
+		  success: function(result){
+	    
+			 // alert(result);
+			  var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+			  $('#nearestcity').append(y1);
+			  jQuery.each( result, function( i, val ) {
+				 //alert(val.areadescription);
+				 var y ='<option value='+val.areacode+'th:value='+val.areacode+'>'+val.areadescription+'</option>';
+				 $('#nearestcity').append(y);	 
+				});
+			  }});
+	  
+	  
+	  $.ajax({url: "/NexusClient/defaultrate", 
+		  type: "get",
+		  data: { 
+			  branchId: brcode 
+			    
+			  },
+		  success: function(result){
+	    
+			 // alert(result); <tr> <td></td> <td></td></tr>
+			 // var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+			//  $('#nearestcity').append(y1);
+			  jQuery.each( result, function( i, val ) {
+				 //alert(val.areadescription);   chargeprice
+				 var y ='<tr> <td>'+val.tobarnch+'</td> <td>'+ val.chargeprice+'</td></tr>';
+				 $('#defaultratetable').append(y); 
+				});
+			  }});
+		
+	  
+	  $.ajax({url: "/NexusClient/fixedrate", 
+		  type: "get",
+		  data: { 
+			  branchId: brcode 
+			    
+			  },
+		  success: function(result){
+	    
+			 // alert(result); <tr> <td></td> <td></td></tr>
+			 // var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Nearest City"+'</option>';
+			//  $('#nearestcity').append(y1);
+			  jQuery.each( result, function( i, val ) {
+				 //alert(val.areadescription);   chargeprice
+				 var y ='<tr> <td>'+val.tobarnch+'</td> <td>'+ val.chargeprice+'</td></tr>';
+				 $('#fixedratetable').append(y); 
+				});
+			  }});
+		
+	});
+	
+	
+	$("#bankName").change(function() {
+		
+		var bankcode =  $( "#bankName option:selected" ).val();
+		$( "#bankAccountBranch" ).empty();
+	  $.ajax(  {url: "/NexusClient/branclist", 
+		  type: "get",
+		  data: { 
+			  bankcode: bankcode 
+			   
+			  },
+		  success: function(result){
+	    
+			 // alert(result);
+			  var y1 ='<option value='+"X"+'th:value='+"X"+'>'+"Please select Bank Branch "+'</option>';
+			  $('#bankAccountBranch').append(y1);
+			  jQuery.each( result, function( i, val ) {
+				 //alert(val.areadescription);
+				 var y ='<option value='+val.barnchcode+'th:value='+val.barnchcode+'>'+val.branchdescription+'</option>';
+				 $('#bankAccountBranch').append(y);	 
+				});
+			  }});
+		
+		
+	});
+	
+	
+});
+</script>	
+	
+</head>
+<body>
+
+	<div class="container">
+		<h1>Nexus Delivery Customer Registration</h1>
+			<form action="#" th:action="@{/viewagreement}"
+								th:object="${registerData}" method="post">
+
+			<div th:if="${registerData.isregistersuccess == 'Y'}">
+				<div class="alert alert-success" role="alert">Activation Link sent to email. Please check.</div>
+
+			</div>
+			
+			<div class="form-group">
+				<label for="pwd">	</label> 
+																						
+			</div>
+			
+				<div class="form-group" id="ratecodediv">
+				<label for="pwd"></label>
+				 
+				 
+				 <table>
+				 <tr><td>Default Rate Sheet</td><td> Fixed Rate sheet</td></tr>
+				 
+				 <tr><td><table id="defaultratetable">
+				<tr> <th>To Destination</th> <th>Charge</th></tr>    
+				<tr th:each="ratelist : ${defaultratelist}">
+                            <td th:text="${ratelist.tobarnch}"></td>
+                            <td th:text="${ratelist.chargeprice}"></td> </tr>
+				 </table></td>
+				 
+				 <td>
+				 
+				 <table id="fixedratetable">
+				<tr> <th>To Destination</th> <th>Charge</th></tr>	
+				<tr th:each="ratelist : ${fixedratelist}">
+                            <td th:text="${ratelist.tobarnch}"></td>
+                            <td th:text="${ratelist.chargeprice}"></td> </tr>	
+				 </table>
+				 </td></tr>
+				 </table>
+			</div>
+			
+				<div class="form-group">
+				<label for="pwd">Rate Type:</label>
+				 <fieldset> 
+				<input type="radio" name="ratetype" th:field="*{ratetype}" th:value="d" value="d" checked="checked"> Default<br> 
+				<input type="radio" name="ratetype" th:field="*{ratetype}" th:value="F" value="F"> Fixed <br> 
+								 </fieldset> 
+				 
+				
+				
+			</div>
+			
+			<input type="submit" class="btn btn-primary" value="Submit"/>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	
+<script>
+$(document).ready(function(){
+	
+	
+	$("#agreementcompletebtn").attr("disabled", "disabled"); 
+	$('input[type="checkbox"]').click(function(){
+        
+		if($(this).prop("checked") == true){
+            //alert("Checkbox is checked.");
+			$("#agreementcompletebtn").removeAttr("disabled"); 
+        }
+        else if($(this).prop("checked") == false){
+        	//alert("Checkbox is unchecked.");
+        	$("#agreementcompletebtn").attr("disabled", "disabled"); 
+        }
+    });
+	//$( "#personalnicdiv" ).hide();
+	
+	
+	
+	
+	
+	
+	
+	
+});
+</script>	
+	
+</head>
+<body>
+
+	<div class="container">
+		<h1>Nexus Delivery Customer Registration</h1>
+			<form action="#" th:action="@{/sendregisterrequest}"
+								th:object="${registerData}" method="post">
+
+			<div th:if="${registerData.isregistersuccess == 'Y'}">
+				<div class="alert alert-success" role="alert">Activation Link sent to email. Please check.</div>
+
+			</div>
+			 
+			 <div class="form-group" style="overflow: scroll; height: 300px;">
+				<label for="pwd">1. DEFINITIONS	</label> 
+				<br>
+				1.1 The following definitions apply to the terms and conditions set out below that govern the agreement of delivery and other services between you and us.																		
+				<br>														
+				1.2 "we", "us", "our" and Nexus means Nexus Deliver (Pvt) Ltd and its employees, agents and independent contractors.																		
+				<br>														
+				1.3 "you" and "your" means the sender or consignor.																		
+				<br>														
+				1.4 "delivery" means and includes the whole of the operations and services undertaken by us in connection with the transportation of the shipment.																		
+				<br>														
+				1.5 "Waybill" means information provided by you in written or electronic form via Nexus Deliver order tracking system concerning the shipment.																		
+				<br>														
+				1.6 "other services" means all services not being services for the delivery of shipments that are performed by us, including, but not limited to, storage, sorting and packing.																		
+				<br>														
+				1.7 "shipment" means goods or documents of whatever nature (whether in bulk or in one or more packages) which we have accepted for delivery or regarding which we have accepted to perform other services, whether under our waybill or not.																		
+				<br>														
+				1.8 "prohibited items" means any goods or materials the delivery of which is prohibited by any law, rule or regulation of the Democratic Socialist Republic of Sri Lanka.																		
+				<br>														
+				1.9 "COD"" means Cash on Delivery.	
+				<br>
+				2. THE PARTY WITH WHOM YOU ARE COMING TO AGREEMENT																									
+<br>																									
+Your agreement of delivery and other services is with Nexus Deliver or the subsidiary or affiliate of Nexus Deliver that accepts from you the shipment for delivery or as the case may be, the performance of other services.																									
+<br>																									
+3. YOUR ACCEPTANCE OF OUR TERMS AND CONDITIONS																									
+<br>																									
+3.1 These terms and conditions constitute a legally binding contract between Nexus Deliver and yourself. In the event the Nexus Deliver renders other services and issues a document containing Terms and Conditions governing such other services, the Terms and Conditions set forth in such other document(s) shall govern those services.																									
+<br>																									
+3.2 By giving us your shipment you accept our terms and conditions set out in this document and/or the terms and conditions in document/s for the performance of other services on behalf of yourself and/or anyone else who has an interest in the shipment or the performance of other services irrespective of whether you have signed our waybill or not.																									
+<br>																									
+3.3 It is agreed that notwithstanding additional terms and conditions that may be agreed between you and Nexus Deliver from time to time relating to delivery and other services undertaken, all services relating to delivery shall be governed by the terms and conditions set forth in this Agreement, unless otherwise agreed upon in writing by both Parties.																									
+<br>																									
+3.4 Our terms and conditions also cover and can be invoked by anyone we use to collect, transport, deliver your shipment or perform other services as well as our employees, directors and agents. Only our authorized officers may agree to a variation of these terms and conditions in writing. When you give us the shipment with oral or written instructions that conflict with our terms and conditions we shall not be bound by such instructions.																									
+<br>																									
+4. YOUR OBLIGATIONS																									
+<br>																									
+You warrant, represent and guarantee to us that:																									
+<br>																									
+4.1 The receiver's full address and contact details have been fully, accurately and legibly entered on our waybill and order tracking system.																									
+<br>																									
+4.2 Waybill must be securely attached by you to a prominent position on the outer surface of the shipment that can be clearly seen by us.																									
+<br>																									
+4.3 The barcode ID sticker for each individual shipment must be pasted on a flat surface of the shipment where it is possible to scan it using a barcode scanner.																									
+<br>																									
+4.4 You should upload/enter shipment details in Nexus Deliver daily for the shipments handed over to Nexus Deliver on the same day by agreed cut off time.																									
+<br>																									
+4.5 The contents of the shipment have been prepared and packed safely and carefully by you to protect against the ordinary risks of transport, or the performance by us of other services, including any associated sortation and/or handling process.																									
+<br>																									
+4.6 All applicable laws and regulations have been complied with.																									
+<br>																									
+4.7 That you have taken all reasonable precautions to comply with all conventions, directives and legislation relating to the protection of personal data including if practicable encryption of the personal data to ensure the safety of the personal data in the event of loss or miss-delivery of a shipment.																									
+<br>																									
+4.8 The value of any shipment does not exceed LKR 250,000/=																									
+<br>																									
+4.9 To indemnify us and hold us harmless from any liabilities we may suffer or any costs, damages or expenses, including legal costs, we incur either to you or to anyone else arising out of you being in breach of any of these warranties, representations and guarantees, even if we inadvertently accept a shipment that contravenes any of your obligations.																									
+<br>																									
+4.10 There are no dangerous or prohibited items in the shipment provided to us.																									
+<br>																								
+4.11 There are no items which may be flammable or explosive.																									
+<br>																									
+5. RIGHT OF INSPECTION																									
+<br>																									
+You agree and acknowledge that we or any governmental authority or relevant security officers may open and inspect your shipment at any time to ensure that there are no prohibited items in the shipment.																									
+<br>																									
+6. INCORRECT ADDRESS																									
+<br>																									
+6.1 In the event you have provided an incorrect address of the recipient for the delivery of a shipment, we will take reasonable efforts to ascertain the correct address.																									
+<br>																									
+6.2 We shall keep you informed of the correction via Nexus Deliver order tracking system and upon confirmation from either the receiver or yourself of the correct address, we will deliver or attempt to deliver the shipment to the correct address subject to additional charges that may apply.																									
+<br>																									
+7. DELIVERY OF YOUR SHIPMENT																									
+<br>																									
+7.1 In the event we are unable to deliver a shipment to the receiver for whatever reason other than for a fault of ours, we will keep you informed through Nexus Deliver order tracking system and send an alert to the receiver stating that delivery has been attempted and the location of the shipment.																									
+<br>																									
+7.2 In the event we are unable to deliver the shipment in our third attempt and/or if the receiver refuses to accept delivery, we will return the shipment to you at our earliest possible opportunity.																									
+<br>																									
+7.3 You agree to pay us 75% of the cost of delivery we incur in forwarding, disposing of or returning the shipments to you and additional charges (if any) for making further delivery attempts subsequent to our third attempt as indicated in 7.2 above.																									
+<br>																									
+7.4 If we do not receive instructions from yourself or your receiver within a reasonable period after our third attempt to deliver the shipment, then you agree that we may return the shipment without any further liability to you.																									
+<br>																									
+7.5 Shipments will not be sent out for delivery if the shipment details are not uploaded/entered in the system by you before 6pm on the day of shipments are handed over to Nexus Deliver.																									
+<br>																									
+7.6 Nexus Deliver shall deliver packages or return to the client within 14 days from the date of receipt to the Nexus Office.																									
+<br>																									
+7.7 In the event that Nexus Deliver failed to return any package to the client within 21 days, all such COD amount will be paid to the client.																									
+<br>																									
+Special Delivery Instructions																									
+<br>																									
+7.6 You or the receiver of a shipment may give written instructions to us (by means of Nexus Deliver website or any other medium) to deliver the shipment to another location/person (being for example a neighbor and/or neighboring address) or the receiver may indicate its wish to collect the shipment from an alternate location acceptable to us. If we agree to such request, the following provisions shall apply:																									
+<br>																									
+7.6.1 Our furnishing of any delivery receipt upon which is listed the alternative person and/or delivery location shall constitute proof of delivery of the shipment.																									
+<br>																									
+7.6.2 We shall not be liable for any loss or damage in any way as a result of our performance of special delivery instructions.																									
+<br>																									
+7.6.3 We shall not be liable for delays caused trying to fulfill special delivery instructions.																									
+<br>																									
+7.6.4 You shall indemnify us and hold us harmless from and against all claims, costs, liability and expenses (including reasonable lawyers' fees and expenses) arising by reason of loss or damage to any shipments as a result of providing this special delivery instructions service.																									
+<br>																									
+7.6.5 We also reserve the right to charge you an administration fee for providing this special delivery instructions service.																									
+<br>																									
+8. CALCULATION OF TRANSIT TIMES AND ROUTING OF SHIPMENTS																									
+<br>																									
+8.1 The first delivery attempt will be made in all locations within one working day after you handover the shipments to us, provided you have fulfilled all the obligations mentioned under section 5.																									
+<br>																									
+8.2 Weekend days, public holidays, bank holidays, delays caused by customs, delays attributable to compliance with mandatory local security requirements or other events beyond our control are not included when we quote door to door delivery times in our published literature.																									
+<br>																									
+8.3 The route and the method by which we transport your shipment shall be at our sole discretion.																									
+<br>																									
+9. SHIPMENT TRACKING																									
+<br>																									
+Only the Nexus Deliver waybill ID must be used for all shipment tracking purposes. Nexus Deliver must not be held liable for delays caused due to not using Nexus Deliver waybill ID for shipment tracking.																									
+<br>																									
+10. LIABILITY																									
+<br>																									
+10.1 We will not be liable for any loss or damages of shipments caused by inadequate packaging.																									
+<br>																									
+10.2 We will not be liable for any loss of income, loss of profits, loss of markets, loss of reputation, loss of customers, loss of use, loss of an opportunity even if we had knowledge that such damages or loss might arise or for any indirect, incidental, special or consequential damages or loss howsoever arising including without limitation breach of contract, negligence, willful act or default.																									
+<br>																									
+10.3 We are not liable if we do not fulfill any obligations towards you at all as a result of circumstances beyond our control such as (but not limited to)																									
+<br>																									
+10.3.1 Acts of god including earthquakes, cyclones, storms, flooding, fire, disease, fog, snow or frost. Force majeure including (but not limited to) war, accidents, acts of public enemies, strikes, embargoes, perils of the air, local disputes or civil commotions.																									
+<br>																									
+10.3.2 National or local disruptions in transportation networks and mechanical problems to modes of transport or machinery.																									
+<br>																									
+10.3.3 Latent defects or inherent vice in the contents of the shipment.																									
+<br>																									
+10.3.4 Criminal acts of third parties such as theft and arson.																									
+<br>																									
+10.3.5 Your acts or omissions or those of third parties such as you being in breach of (or any other party claiming an interest in the shipment causing you to breach) your obligations under these terms and conditions and in particular those warranties set out in clause the contents of the shipment consisting of any article that is a prohibited item even though we may have accepted the shipment by mistake.																									
+<br>																									
+10.3.6 Our refusal to make any illegal payments on your behalf.																									
+<br>																									
+10.4 We are not a common carrier and do not accept any liabilities of a common carrier.																									
+<br>																									
+11. VALUABLE GOODS																									
+<br>																									
+11.1 Valuable goods such as precious stones, precious metals, jewellery, negotiable instruments, unprotected furniture, glass, objects of art, antiques and important documents that include passports, tenders, share and option certificates should not be sent through our network of delivery system because it involves the use of mechanical handling and automated sortation equipment together with multiple transshipments on and off vehicles which could result in loss and/or damage.																									
+<br>																									
+11.2 If you nevertheless send, or cause us to send, such goods through our network of delivery system it shall be at your own risk.																									
+<br>																									
+12. CLAIMS BROUGHT BY THIRD PARTIES																									
+<br>																									
+You undertake to us that you shall not permit any other person who has an interest in the shipment to bring a claim or action against us even though we may have been negligent or in default and if a claim or action is made you will indemnify us against the consequences of the claim or action and the costs and expenses we incur in defending it.																									
+<br>																									
+13. CLAIMS PROCEDURE																									
+<br>																									
+13.1 We will assume the shipment was delivered in good condition unless the receiver has noted any damage on our delivery record when he or she accepted the shipment. In order for us to consider a claim for damage, the contents of your shipment and the original packaging must be made available to us for inspection within a reasonable period of time.																									
+<br>																									
+13.2 In case of acceptance by us of part or all of your claim, you warrant to us that your insurers or any other third party having an interest in the shipment shall have waived any rights, remedies or relief to which they might become entitled by subrogation or otherwise.																									
+<br>																									
+13.3 The shipment shall not be deemed to be lost until at least 30 days have elapsed since the date you notified us of the non-delivery. We may agree with you in writing to shorten this period.																									
+<br>																									
+14. RATES AND PAYMENT																									
+<br>																									
+14.1 You agree to pay our charges including applicable surcharges for the delivery of the shipment to the locations specified on the waybill, or for the performance by us of other services, and any value added taxes within 7 days from the date of our invoice without withholding, deduction, counterclaim or set off.																									
+<br>																									
+14.2 You waive all your rights to challenge our invoices if you do not contest our invoice in writing within 7 days from the date of the invoice.																									
+<br>																									
+14.3 Our charges are calculated in accordance with the rates applicable to your shipment as set out in our current rate card or in the relevant agreement or relevant correspondence. Our current rate card is available on request.																									
+<br>																									
+14.4 We charge for every shipment handed over to us by you and where we have made at least one attempt to deliver. Charges will be based on the actual weight of the shipment and the intended delivery location.																									
+<br>																									
+14.5 Our invoice does not include a copy/copies of the Proof of Delivery (POD).																									
+<br>																									
+14.6 Our standard invoice presentation method is electronic invoicing.																									
+<br>																									
+14.7 You shall be liable for the payment of all duties, taxes and charges including stamp duties as applicable on the deliveries and other services as well as on all documents.																									
+<br>																									
+15. CASH ON DELIVERY(COD) SETTLMENTS																									
+<br>																									
+Cash on delivery for successful deliveries will be settled to you at an agreed frequency after deducting the agreed cash on delivery surcharges if applicable.																									
+<br>																									
+16. YOUR INDEMNITY IN RESPECT OF EMPLOYEES																									
+<br>																									
+You agree to indemnify us against and keep us harmless from all costs, claims, liabilities and demands of any nature arising directly or indirectly from the redundancy selective re-employment or transfer of any of our employees assigned or primarily dedicated to the services we provide to you at your written request.																									
+<br>																									
+17. LAW AND JURISDICTION																									
+<br>																									
+17.1 In the event that any term or condition is declared invalid or unenforceable such a determination shall not affect the other provisions of this contract all of which remain in force.																									
+<br>																									
+17.2 Save as provided by any applicable convention, disputes arising from or related to this contract shall be subject to the laws and the Courts of Democratic Socialist Republic of Sri Lanka.																									
+<br>
+																					
+			</div>
+   			
+			
+			<div class="form-group form-check">
+				<label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" id="termagreecheckbox" name="remember">
+					I / we acknowledge that I have read and understood 				
+					the above policies and terams and conditions				
+					procedures in its entirety and agree to abide by them.
+				</label>
+			</div>
+			
+			<input type="submit" id="agreementcompletebtn" class="btn btn-primary" value="Submit"/>
+		</form>
+	</div>
+
+</body>
+</html>

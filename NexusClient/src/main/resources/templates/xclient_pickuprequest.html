@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+<!-- Custom Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+
+<!-- Custom Stylesheet -->
+    <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <link href="plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+
+</head>
+<body>
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo1.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact1.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text1.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+
+
+				<div class="header-right">
+					<ul class="clearfix">
+
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="images/user/1.png" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="app-profile.html"><i class="icon-user"></i>
+												<span>Profile</span></a></li>
+										<li><a href="email-inbox.html"><i
+												class="icon-envelope-open"></i> <span>Inbox</span>
+												<div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+										</li>
+
+										<hr class="my-2">
+										<li><a href="page-lock.html"><i class="icon-lock"></i>
+												<span>Lock Screen</span></a></li>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li class="nav-label"></li>
+					<li><a class="has-arrow" href="/NexusClient/clientorder"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Add Order</span>
+					</a></li>
+					<li><a class="has-arrow" href="/NexusClient/loaduploadpage"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Upload Orders</span>
+					</a></li>	
+
+					<li><a class="has-arrow" href="/NexusClient/pickuprequest"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Pickup Request</span>
+					</a></li>
+
+					<li><a class="has-arrow" href="/NexusClient/search"
+						aria-expanded="false"> <i class="icon-note menu-icon"></i><span
+							class="nav-text">Search / Report</span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<!-- row -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="form-validation">
+
+									<form class="form-valide" action="#"
+										th:action="@{/Pickuprequest}" th:object="${pickupdetails}"  method="post">
+								
+										 <div th:if="${pickupdetails.ispickuprequestsuccess == 'Y'}">
+											<div class="alert alert-success" role="alert" >Pick up request Sent Successfully</div>					
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-orderid">Contact No
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-orderid"
+													th:field="*{contactno}" name="val-orderid" />
+											</div>
+										</div>		
+										
+										
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-orderid">No of Pick ups
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="val-orderid"
+													th:field="*{noofpickups}"  name="val-orderid" />
+											</div>
+										</div>	
+														
+									
+									
+										<div class="form-group row">
+											<label class="col-lg-4 col-form-label" for="val-cashtype">Vehicle Type <span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-6">
+
+												<select class="form-control" id="val-cashtype"	th:field="*{vehicletype}"  style="width: 100%">
+													<option th:value="C" value="C">Car</option>
+                                					<option th:value="V" value="V">Van</option>
+                                					<option th:value="T" value="T">Three Wheeler</option>
+                                					<option th:value="L" value="L">Lorry</option>
+                                					<option th:value="B" value="B">Bike</option>
+
+												</select>
+											</div>
+										</div>
+										
+										
+										<div class="form-group row">
+											<div class="col-lg-8 ml-auto">
+												<input type="submit" th:name="action" th:value="Submit"
+													class="btn btn-primary" value="Submit" /> <input
+													type="submit" th:name="action" th:value="Cancel"
+													class="btn btn-danger" value="Cancel" />
+											</div>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<p>-</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright &copy; by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+					2018
+				</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<script src="plugins/common/common.min.js"></script>
+	<script src="js/custom.min.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/gleek.js"></script>
+	<script src="js/styleSwitcher.js"></script>
+	
+	<script src="plugins/moment/moment.js"></script>
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="js/plugins-init/form-pickers-init.js"></script>
+</body>
+</html>
+<!-- Links https://www.baeldung.com/spring-form-multiple-submit-buttons 
+https://www.baeldung.com/spring-thymeleaf-request-parameters
+-->
